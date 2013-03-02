@@ -572,6 +572,52 @@ public class PSEntityListener implements Listener
             }
         }
 
+        if (event.getEntity() instanceof EntityChair || event.get Entity() instanceof EntityUmbrella)
+        {
+            Field field = plugin.getForceFieldManager().getEnabledSourceField(event.getEntity().getLocation(), FieldFlag.PROTECT_TROPICRAFT);
+
+            if (field != null)
+            {
+                if (event instanceof EntityDamageByEntityEvent)
+                {
+                    EntityDamageByEntityEvent sub = (EntityDamageByEntityEvent) event;
+
+                    Player player = null;
+
+                    if (sub.getDamager() instanceof Player)
+                    {
+                        player = (Player) sub.getDamager();
+                    }
+                    else if (sub.getDamager() instanceof Arrow)
+                    {
+                        Arrow arrow = (Arrow) sub.getDamager();
+
+                        if (arrow.getShooter() instanceof Player)
+                        {
+                            player = (Player) arrow.getShooter();
+                        }
+                    }
+
+                    if (player != null)
+                    {
+                        if (FieldFlag.PROTECT_TROPICRAFT.applies(field, player))
+                        {
+                            event.setCancelled(true);
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        if (field.hasFlag(FieldFlag.PROTECT_TROPICRAFT))
+                        {
+                            event.setCancelled(true);
+                            return;
+                        }
+                    }
+                }
+            }
+        }
+
         if (event.getEntity() instanceof Ageable)
         {
             Field field = plugin.getForceFieldManager().getEnabledSourceField(event.getEntity().getLocation(), FieldFlag.PROTECT_ANIMALS);
