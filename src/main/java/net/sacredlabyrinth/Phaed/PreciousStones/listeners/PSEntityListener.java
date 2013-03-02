@@ -572,9 +572,9 @@ public class PSEntityListener implements Listener
             }
         }
 
-        if (event.getEntity() instanceof EntityChair || event.get Entity() instanceof EntityUmbrella)
+        if (event.getEntity() instanceof EntityChair || event.getEntity() instanceof EntityUmbrella)
         {
-            Field field = plugin.getForceFieldManager().getEnabledSourceField(event.getEntity().getLocation(), FieldFlag.PROTECT_TROPICRAFT);
+            Field field = plugin.getForceFieldManager().getEnabledSourceField(event.getEntity().getLocation(), FieldFlag.PROTECT_ANIMALS);
 
             if (field != null)
             {
@@ -600,7 +600,7 @@ public class PSEntityListener implements Listener
 
                     if (player != null)
                     {
-                        if (FieldFlag.PROTECT_TROPICRAFT.applies(field, player))
+                        if (FieldFlag.PROTECT_ANIMALS.applies(field, player))
                         {
                             event.setCancelled(true);
                             return;
@@ -608,7 +608,7 @@ public class PSEntityListener implements Listener
                     }
                     else
                     {
-                        if (field.hasFlag(FieldFlag.PROTECT_TROPICRAFT))
+                        if (field.hasFlag(FieldFlag.PROTECT_ANIMALS))
                         {
                             event.setCancelled(true);
                             return;
