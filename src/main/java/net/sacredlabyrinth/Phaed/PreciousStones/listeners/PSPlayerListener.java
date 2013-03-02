@@ -1062,8 +1062,8 @@ public class PSPlayerListener implements Listener
         {
             if (is != null)
             {
-                if (is.getTypeId() == 270 || is.getTypeId() == 274 || is.getTypeId() == 278 || is.getTypeId() == 285)
-                {
+                //if (is.getTypeId() == 270 || is.getTypeId() == 274 || is.getTypeId() == 278 || is.getTypeId() == 285)
+                //{
                     PlayerEntry data = plugin.getPlayerManager().getPlayerEntry(player.getName());
 
                     if (data.isSuperduperpickaxe())
@@ -1239,7 +1239,6 @@ public class PSPlayerListener implements Listener
                         }
                     }
                 }
-            }
         }
 
         // -------------------------------------------------------------------------------- snitch record right click actions
